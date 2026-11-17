@@ -52,7 +52,9 @@ public enum PopularSoftwarePresetManager {
     }
 
     public static func bundledIconData(forPresetId id: String) -> Data? {
-        guard let url = Bundle.module.url(forResource: id, withExtension: "png", subdirectory: "PresetIcons") else {
+        guard let bundle = ResourceBundleLocator.core,
+            let url = bundle.url(forResource: id, withExtension: "png", subdirectory: "PresetIcons")
+        else {
             return nil
         }
         return try? Data(contentsOf: url)
