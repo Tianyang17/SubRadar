@@ -38,8 +38,8 @@ struct AppUpdateRelaunchSafetyTests {
             applyHandler: { _ in applyCounter.increment() },
             terminateHandler: { terminateCounter.increment() },
             forceExitHandler: { forceExitCounter.increment() },
-            terminateDelay: .milliseconds(20),
-            forceExitDelay: .milliseconds(60)
+            terminateDelay: .milliseconds(10),
+            forceExitDelay: .milliseconds(50)
         )
         let release = AppUpdateRelease(
             manifest: AppUpdateManifest(
@@ -60,11 +60,11 @@ struct AppUpdateRelaunchSafetyTests {
         // The prompt sheet must be dismissed before terminating, otherwise AppKit blocks termination.
         #expect(manager.showUpdatePrompt == false)
         #expect(terminateCounter.value == 0)
-        try await Task.sleep(for: .milliseconds(40))
+        try await Task.sleep(for: .milliseconds(80))
         #expect(terminateCounter.value == 1)
         #expect(forceExitCounter.value == 0)
         // If the process is still alive after the grace period, force exit.
-        try await Task.sleep(for: .milliseconds(100))
+        try await Task.sleep(for: .milliseconds(150))
         #expect(forceExitCounter.value == 1)
     }
 

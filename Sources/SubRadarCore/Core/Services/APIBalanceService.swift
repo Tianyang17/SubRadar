@@ -42,7 +42,7 @@ public enum APIBalanceProviderPreset: String, CaseIterable, Identifiable, Sendab
         case .deepseek: return "https://api.deepseek.com/user/balance"
         case .openrouter: return "https://openrouter.ai/api/v1/credits"
         case .siliconflow: return "https://api.siliconflow.cn/v1/user/info"
-        case .newAPI: return "https://your-newapi.example.com"
+        case .newAPI: return "https://your-newapi.example.com/api/user/self"
         case .sub2api: return "https://your-sub2api.example.com"
         case .custom: return "https://api.example.com/v1/balance"
         }
@@ -53,7 +53,7 @@ public enum APIBalanceProviderPreset: String, CaseIterable, Identifiable, Sendab
         case .deepseek: return "balance_infos[0].total_balance"
         case .openrouter: return "total_credits - total_usage"
         case .siliconflow: return "data.totalBalance"
-        case .newAPI: return "total_available / 500000"
+        case .newAPI: return "data.quota / 500000"
         case .sub2api: return "balance / remaining"
         case .custom: return "data.balance"
         }
@@ -103,6 +103,7 @@ public enum APIBalanceError: LocalizedError, Sendable {
     case invalidEndpoint
     case invalidResponse
     case httpStatus(Int)
+    case missingNewAPIUserID(String)
     case parseFailed(String)
 
     public var errorDescription: String? {
@@ -113,6 +114,8 @@ public enum APIBalanceError: LocalizedError, Sendable {
             return "API 查询地址格式不正确，请填写以 http:// 或 https:// 开头的完整网址。"
         case .invalidResponse:
             return "服务器返回内容格式异常，暂时无法识别余额。"
+        case .missingNewAPIUserID(let detail):
+            return "查询 New API 账户总额度（/api/user/self）需要提供纯数字【用户 ID】（用于 New-Api-User 鉴权头）：\(detail)"
         case .httpStatus(let code):
             switch code {
             case 401:
@@ -181,26 +184,12 @@ public final class APIBalanceService: APIBalanceServiceProtocol {
             )
 
         case .newAPI:
-            let divisor = extractDivisor(from: parseRule) ?? Decimal(500_000)
-            let primaryURL = try resolvedURL(rawEndpoint, appendIfRoot: "/api/usage/token")
-            do {
-                let data = try await performGET(url: primaryURL, apiKey: apiKey)
-                return try parseDividedCandidates(
-                    data: data,
-                    candidatePaths: ["total_available", "data.total_available", "quota", "data.quota"],
-                    divisor: divisor,
-                    currency: item.currency
-                )
-            } catch APIBalanceError.httpStatus {
-                let fallbackURL = try replacingOrAppendingPath(rawEndpoint, newPath: "/api/user/self")
-                let data = try await performGET(url: fallbackURL, apiKey: apiKey)
-                return try parseDividedCandidates(
-                    data: data,
-                    candidatePaths: ["data.quota", "quota", "data.total_available", "total_available"],
-                    divisor: divisor,
-                    currency: item.currency
-                )
-            }
+            return try await fetchNewAPIBalance(
+                item: item,
+                rawEndpoint: rawEndpoint,
+                apiKey: apiKey,
+                parseRule: parseRule
+            )
 
         case .sub2api:
             let url = try resolvedURL(rawEndpoint, appendIfRoot: "/v1/usage")
@@ -230,17 +219,25 @@ public final class APIBalanceService: APIBalanceServiceProtocol {
 
     // MARK: - HTTP Execution
 
-    private func performGET(url: URL, apiKey: String) async throws -> Data {
-        try await performRequest(url: url, method: "GET", apiKey: apiKey)
+    func performGET(url: URL, apiKey: String, headers: [String: String] = [:]) async throws -> Data {
+        try await performRequest(url: url, method: "GET", apiKey: apiKey, headers: headers)
     }
 
-    private func performRequest(url: URL, method: String, apiKey: String) async throws -> Data {
+    func performRequest(
+        url: URL,
+        method: String,
+        apiKey: String,
+        headers: [String: String] = [:]
+    ) async throws -> Data {
         var req = URLRequest(url: url)
         req.httpMethod = method
         req.timeoutInterval = 15
         req.setValue("application/json", forHTTPHeaderField: "Accept")
         if !apiKey.isEmpty {
             req.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
+        }
+        for (headerKey, headerVal) in headers {
+            req.setValue(headerVal, forHTTPHeaderField: headerKey)
         }
         let (data, http) = try await transport.data(for: req)
         guard (200...299).contains(http.statusCode) else {
@@ -255,7 +252,7 @@ public final class APIBalanceService: APIBalanceServiceProtocol {
         return data
     }
 
-    private func resolvedURL(_ raw: String, appendIfRoot suffix: String?) throws -> URL {
+    func resolvedURL(_ raw: String, appendIfRoot suffix: String?) throws -> URL {
         let normalized = raw.hasPrefix("http://") || raw.hasPrefix("https://") ? raw : "https://\(raw)"
         guard var components = URLComponents(string: normalized), components.host != nil else {
             throw APIBalanceError.invalidEndpoint
@@ -269,7 +266,7 @@ public final class APIBalanceService: APIBalanceServiceProtocol {
         return url
     }
 
-    private func replacingOrAppendingPath(_ raw: String, newPath: String) throws -> URL {
+    func replacingOrAppendingPath(_ raw: String, newPath: String) throws -> URL {
         let normalized = raw.hasPrefix("http://") || raw.hasPrefix("https://") ? raw : "https://\(raw)"
         guard var components = URLComponents(string: normalized), components.host != nil else {
             throw APIBalanceError.invalidEndpoint

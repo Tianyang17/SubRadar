@@ -154,7 +154,8 @@ extension PopularSoftwarePresetManager {
             defaultCurrency: "USD",
             presetFieldValues: [
                 "provider_preset": "new_api",
-                "parse_rule": "total_available / 500000",
+                "api_endpoint": "https://your-newapi.example.com/api/user/self",
+                "parse_rule": "data.quota / 500000",
                 "low_balance_threshold": "10"
             ]
         ),

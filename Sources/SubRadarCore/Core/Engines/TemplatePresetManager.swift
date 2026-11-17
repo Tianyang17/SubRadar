@@ -104,6 +104,9 @@ public enum TemplatePresetManager {
                     placeholder: "https://api.deepseek.com/user/balance"),
                 FieldSchema(key: "api_key", label: "API Key", type: .secret, placeholder: "sk-...（本地 SQLite 独立表存储）"),
                 FieldSchema(
+                    key: "api_user_id", label: "用户 ID (可选)", type: .text,
+                    placeholder: "纯数字 ID（New API 查账户总额度时填写，如 1）"),
+                FieldSchema(
                     key: "parse_rule", label: "解析与换算规则", type: .text,
                     placeholder: "JSON 路径与换算除数，如 total_available / 500000"),
                 FieldSchema(key: "current_balance", label: "当前账户余额", type: .number, placeholder: "点击右侧查询获取"),

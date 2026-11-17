@@ -140,6 +140,9 @@ extension EditorViewModel {
             setFieldValue(preset.defaultEndpoint, forKey: "api_endpoint", label: "余额接口地址")
             setFieldValue(preset.defaultParseRule, forKey: "parse_rule", label: "解析规则")
             setFieldValue(preset.defaultConsoleURL, forKey: "console_url", label: "API 控制台")
+            if preset == .newAPI && !customFields.contains(where: { $0.key == "api_user_id" }) {
+                setFieldValue("", forKey: "api_user_id", label: "用户 ID (可选)")
+            }
             if priceText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                 currency = preset.defaultCurrency
             }
