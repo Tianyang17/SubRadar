@@ -114,7 +114,7 @@ Sources/
 ├── SubRadarCore/
 │   ├── App/           # AppContainer 依赖装配与生产启动入口
 │   ├── Core/
-│   │   ├── Database/  # Actor 隔离 SQLite、V1–V20 迁移与仓储实现
+│   │   ├── Database/  # Actor 隔离 SQLite、V1–V21 迁移与仓储实现
 │   │   ├── Engines/   # 计费引擎、通知引擎、模版与预置服务目录
 │   │   └── Services/  # 汇率换算、API 余额探针、应用更新、脱敏日志、备份导出
 │   ├── Models/        # Codable & Sendable 核心领域模型
@@ -123,6 +123,12 @@ Sources/
     ├── DesignSystem/  # 主题色板、定制输入控件、可直输日期选择器与悬浮面板
     └── Views/         # 订阅概览、列表详情、编辑器、模版管理、设置与菜单栏挂件
 ```
+
+---
+
+## 💬 欢迎试用与反馈
+
+欢迎下载试用 SubRadar！如果你在使用过程中遇到任何问题、有新的功能想法，或者希望补充特定模版与使用场景，非常欢迎随时提交 [Issue](https://github.com/Tianyang17/SubRadar/issues) 或发起 Pull Request，我会尽快查看并跟进处理。
 
 ---
 

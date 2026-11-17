@@ -114,7 +114,7 @@ Sources/
 ├── SubRadarCore/
 │   ├── App/           # AppContainer dependency wiring (Production & In-Memory)
 │   ├── Core/
-│   │   ├── Database/  # Actor-isolated SQLite, migrations (V1–V20), repositories
+│   │   ├── Database/  # Actor-isolated SQLite, migrations (V1–V21), repositories
 │   │   ├── Engines/   # BillingEngine, NotificationEngine, Template & Preset catalogs
 │   │   └── Services/  # ExchangeRate, APIBalanceProbe, AppUpdate, AppLog, Backup
 │   ├── Models/        # Codable & Sendable domain models
@@ -123,6 +123,12 @@ Sources/
     ├── DesignSystem/  # Custom theme palettes, inputs, date picker, floating panels
     └── Views/         # Analytics, List, Detail, Editor, Templates, Settings, MenuBar
 ```
+
+---
+
+## 💬 Feedback & Feature Requests
+
+You're warmly welcome to try out SubRadar! If you run into any bugs, have ideas for new features, or want specific presets or workflows supported, please feel free to open an [Issue](https://github.com/Tianyang17/SubRadar/issues) or submit a Pull Request. I actively monitor feedback and will review and follow up as soon as possible.
 
 ---
 
