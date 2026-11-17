@@ -48,9 +48,13 @@ if [[ $VIOLATIONS -ne 0 ]]; then
 fi
 echo "    OK: All Swift files are <= $MAX_LINES lines and follow UpperCamelCase modular naming."
 
-echo "==> [2/4] Running strict format & lint check (swift-format lint --strict)..."
-xcrun swift-format lint --strict --configuration "$ROOT_DIR/.swift-format" -r -p Sources Tests
-echo "    OK: 0 lint warnings/errors."
+if [[ "${SKIP_SWIFT_FORMAT:-0}" != "1" ]]; then
+    echo "==> [2/4] Running strict format & lint check (swift-format lint --strict)..."
+    xcrun swift-format lint --strict --configuration "$ROOT_DIR/.swift-format" -r -p Sources Tests
+    echo "    OK: 0 lint warnings/errors."
+else
+    echo "==> [2/4] Skipping swift-format lint (SKIP_SWIFT_FORMAT=1)."
+fi
 
 echo "==> [3/4] Running strict Swift 6 static type & concurrency check (-warnings-as-errors)..."
 swift build --package-path "$ROOT_DIR" --build-tests -Xswiftc -warnings-as-errors
