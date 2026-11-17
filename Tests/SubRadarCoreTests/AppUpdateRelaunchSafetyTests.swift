@@ -24,17 +24,22 @@ private final class CallCounter: @unchecked Sendable {
 struct AppUpdateRelaunchSafetyTests {
     @Test("Repeated restart confirmation only launches one replace helper")
     @MainActor
-    func repeatedConfirmationAppliesOnce() throws {
+    func repeatedConfirmationAppliesOnce() async throws {
         let defaults = UserDefaults(suiteName: "subradar.relaunch.\(UUID().uuidString)")!
         let applyCounter = CallCounter()
         let terminateCounter = CallCounter()
+        let forceExitCounter = CallCounter()
+        defer { _ = defaults }
         let manager = AppUpdateManager(
             settings: AppSettingsStore(userDefaults: defaults),
             logger: AppLogService(
                 directoryURL: FileManager.default.temporaryDirectory
                     .appendingPathComponent("subradar-relaunch-logs-\(UUID().uuidString)")),
             applyHandler: { _ in applyCounter.increment() },
-            terminateHandler: { terminateCounter.increment() }
+            terminateHandler: { terminateCounter.increment() },
+            forceExitHandler: { forceExitCounter.increment() },
+            terminateDelay: .milliseconds(20),
+            forceExitDelay: .milliseconds(60)
         )
         let release = AppUpdateRelease(
             manifest: AppUpdateManifest(
@@ -47,11 +52,20 @@ struct AppUpdateRelaunchSafetyTests {
                 stagingDir: URL(fileURLWithPath: "/tmp/staged")
             ))
 
+        manager.showUpdatePrompt = true
         manager.restartAndInstallReadyUpdate()
         manager.restartAndInstallReadyUpdate()
 
         #expect(applyCounter.value == 1)
+        // The prompt sheet must be dismissed before terminating, otherwise AppKit blocks termination.
+        #expect(manager.showUpdatePrompt == false)
+        #expect(terminateCounter.value == 0)
+        try await Task.sleep(for: .milliseconds(40))
         #expect(terminateCounter.value == 1)
+        #expect(forceExitCounter.value == 0)
+        // If the process is still alive after the grace period, force exit.
+        try await Task.sleep(for: .milliseconds(100))
+        #expect(forceExitCounter.value == 1)
     }
 
     @Test("Replace script never deletes the target before verifying staged app and can roll back")

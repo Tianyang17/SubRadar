@@ -104,7 +104,10 @@ struct AppUpdateFlowTests {
             },
             terminateHandler: {
                 terminateCounter.increment()
-            }
+            },
+            forceExitHandler: {},
+            terminateDelay: .milliseconds(10),
+            forceExitDelay: .seconds(60)
         )
 
         await manager.checkForUpdates(manual: false)
@@ -121,6 +124,7 @@ struct AppUpdateFlowTests {
 
         manager.restartAndInstallReadyUpdate()
         #expect(applyCounter.value == 1)
+        try await Task.sleep(for: .milliseconds(100))
         #expect(terminateCounter.value == 1)
 
         let logContent = try String(contentsOf: await logger.logFileURL(), encoding: .utf8)

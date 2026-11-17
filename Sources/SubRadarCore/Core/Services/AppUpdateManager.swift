@@ -22,6 +22,9 @@ public final class AppUpdateManager {
         @Sendable (AppUpdateRelease, @escaping @Sendable (String) -> Void) async throws -> StagedAppUpdate
     private let applyHandler: @Sendable (StagedAppUpdate) throws -> Void
     private let terminateHandler: @MainActor @Sendable () -> Void
+    private let forceExitHandler: @MainActor @Sendable () -> Void
+    private let terminateDelay: Duration
+    private let forceExitDelay: Duration
 
     private var periodicTask: Task<Void, Never>?
     private var isBusy: Bool = false
@@ -43,7 +46,10 @@ public final class AppUpdateManager {
         },
         terminateHandler: @escaping @MainActor @Sendable () -> Void = {
             NSApplication.shared.terminate(nil)
-        }
+        },
+        forceExitHandler: @escaping @MainActor @Sendable () -> Void = { exit(0) },
+        terminateDelay: Duration = .milliseconds(400),
+        forceExitDelay: Duration = .seconds(3)
     ) {
         self.settings = settings
         self.transport = transport
@@ -53,6 +59,9 @@ public final class AppUpdateManager {
         self.stageHandler = stageHandler
         self.applyHandler = applyHandler
         self.terminateHandler = terminateHandler
+        self.forceExitHandler = forceExitHandler
+        self.terminateDelay = terminateDelay
+        self.forceExitDelay = forceExitDelay
     }
 
     public var currentVersion: String {
@@ -195,13 +204,28 @@ public final class AppUpdateManager {
             let logRef = logger
             Task { await logRef.log(.info, category: .update, "用户确认立即重启并安装 v\(version)") }
             showUpdatePrompt = false
-            terminateHandler()
+            state = .installing(version: version, stage: "正在重启安装...")
+            scheduleTermination()
         } catch {
             isRelaunching = false
             let msg = error.localizedDescription
             let logRef = logger
             Task { await logRef.log(.error, category: .update, "触发重启安装失败 error=\(msg)") }
             state = .failed(message: msg)
+        }
+    }
+
+    /// 先让更新弹窗 sheet 真正关闭再退出（模态 sheet 会令 `terminate` 被 AppKit 拒绝），超时仍未退出则强制退出
+    private func scheduleTermination() {
+        let terminate = terminateHandler
+        let forceExit = forceExitHandler
+        let terminateDelay = terminateDelay
+        let forceExitDelay = forceExitDelay
+        Task { @MainActor in
+            try? await Task.sleep(for: terminateDelay)
+            terminate()
+            try? await Task.sleep(for: forceExitDelay)
+            forceExit()
         }
     }
 
