@@ -188,7 +188,9 @@ extension EditorViewModel {
             balanceProbeStatusMessage = "查询成功：\(result.currency) \(formatted)"
             balanceProbeIsError = false
         } catch {
-            balanceProbeStatusMessage = "查询失败：\(error.userFacingMessage)"
+            let msg = error.userFacingMessage
+            Task { await AppLogService.shared.log(.error, category: .balance, "查询余额失败：\(msg)") }
+            balanceProbeStatusMessage = "查询失败：\(msg)"
             balanceProbeIsError = true
         }
     }

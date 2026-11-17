@@ -17,11 +17,25 @@ extension APIBalanceService {
             headers["New-Api-User"] = userId
         }
 
+        var candidatePaths: [String] = []
+        if let customLeft = extractCustomPath(from: parseRule), !customLeft.isEmpty {
+            candidatePaths.append(customLeft)
+        }
+        candidatePaths.append(contentsOf: [
+            "data.quota",
+            "data.user_quota.total_available",
+            "data.user_quota.quota",
+            "data.total_available",
+            "data.balance",
+            "quota",
+            "total_available",
+            "balance"
+        ])
+
         let isSelfExplicit = rawEndpoint.contains("/api/user/self")
-        let targetURL: URL
 
         if !userId.isEmpty || isSelfExplicit {
-            targetURL = try resolvedURL(rawEndpoint, appendIfRoot: "/api/user/self")
+            let targetURL = try resolvedURL(rawEndpoint, appendIfRoot: "/api/user/self")
             do {
                 let data = try await performRequest(
                     url: targetURL,
@@ -31,17 +45,37 @@ extension APIBalanceService {
                 )
                 return try parseDividedCandidates(
                     data: data,
-                    candidatePaths: ["data.quota", "quota", "data.total_available", "total_available"],
+                    candidatePaths: candidatePaths,
                     divisor: divisor,
                     currency: item.currency
                 )
-            } catch let error as APIBalanceError {
-                if case .httpStatus(let code) = error, code == 401 || code == 403, userId.isEmpty {
-                    throw APIBalanceError.missingNewAPIUserID(
-                        "查询 New API 账户总额度（/api/user/self）未提供数字【用户 ID】，请在订阅字段中补充填写以通过 New-Api-User 鉴权。"
-                    )
+            } catch let initialError {
+                // 如果是用户 ID 缺失引起的 401，且端点就是 self，先试回退 /api/usage/token
+                let fallbackURL = try replacingOrAppendingPath(rawEndpoint, newPath: "/api/usage/token")
+                if let fallbackResult = try? await performRequest(
+                    url: fallbackURL,
+                    method: "GET",
+                    apiKey: apiKey,
+                    headers: [:]
+                ) {
+                    if let result = try? parseDividedCandidates(
+                        data: fallbackResult,
+                        candidatePaths: candidatePaths,
+                        divisor: divisor,
+                        currency: item.currency
+                    ) {
+                        return result
+                    }
                 }
-                throw error
+
+                if let apiErr = initialError as? APIBalanceError {
+                    if case .httpStatus(let code) = apiErr, code == 401 || code == 403, userId.isEmpty {
+                        throw APIBalanceError.missingNewAPIUserID(
+                            "查询 New API 账户总额度（/api/user/self）未提供数字【用户 ID】，请在订阅字段中补充填写以通过 New-Api-User 鉴权。"
+                        )
+                    }
+                }
+                throw initialError
             }
         } else {
             let primaryURL = try resolvedURL(rawEndpoint, appendIfRoot: "/api/usage/token")
@@ -54,11 +88,11 @@ extension APIBalanceService {
                 )
                 return try parseDividedCandidates(
                     data: data,
-                    candidatePaths: ["total_available", "data.total_available", "quota", "data.quota"],
+                    candidatePaths: candidatePaths,
                     divisor: divisor,
                     currency: item.currency
                 )
-            } catch APIBalanceError.httpStatus(let code) {
+            } catch {
                 let fallbackURL = try replacingOrAppendingPath(rawEndpoint, newPath: "/api/user/self")
                 do {
                     let data = try await performRequest(
@@ -69,7 +103,7 @@ extension APIBalanceService {
                     )
                     return try parseDividedCandidates(
                         data: data,
-                        candidatePaths: ["data.quota", "quota", "data.total_available", "total_available"],
+                        candidatePaths: candidatePaths,
                         divisor: divisor,
                         currency: item.currency
                     )
@@ -82,7 +116,7 @@ extension APIBalanceService {
                             "查询 New API 账户总额度（/api/user/self）未提供数字【用户 ID】，请在订阅字段中补充填写以通过 New-Api-User 鉴权。"
                         )
                     }
-                    throw APIBalanceError.httpStatus(code)
+                    throw fallbackError
                 }
             }
         }

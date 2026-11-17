@@ -104,6 +104,7 @@ public enum APIBalanceError: LocalizedError, Sendable {
     case invalidResponse
     case httpStatus(Int)
     case missingNewAPIUserID(String)
+    case serverMessage(String)
     case parseFailed(String)
 
     public var errorDescription: String? {
@@ -116,6 +117,8 @@ public enum APIBalanceError: LocalizedError, Sendable {
             return "服务器返回内容格式异常，暂时无法识别余额。"
         case .missingNewAPIUserID(let detail):
             return "查询 New API 账户总额度（/api/user/self）需要提供纯数字【用户 ID】（用于 New-Api-User 鉴权头）：\(detail)"
+        case .serverMessage(let msg):
+            return "服务商接口提示：\(msg)"
         case .httpStatus(let code):
             switch code {
             case 401:

@@ -38,10 +38,23 @@ extension APIBalanceService {
         currency: String
     ) throws -> APIBalanceResult {
         let json = try JSONSerialization.jsonObject(with: data)
-        for path in candidatePaths {
+        for path in candidatePaths where !path.isEmpty {
             if let rawVal = evaluatePath(path, in: json) {
                 let effective = divisor > 0 ? rawVal / divisor : rawVal
                 return APIBalanceResult(balance: effective, currency: currency)
+            }
+        }
+        if let dict = json as? [String: Any] {
+            if let msg = (dict["message"] ?? dict["msg"]) as? String,
+                !msg.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            {
+                throw APIBalanceError.serverMessage(msg)
+            }
+            if let errObj = dict["error"] as? [String: Any],
+                let msg = errObj["message"] as? String,
+                !msg.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            {
+                throw APIBalanceError.serverMessage(msg)
             }
         }
         throw APIBalanceError.parseFailed(candidatePaths.joined(separator: " / "))
@@ -65,6 +78,16 @@ extension APIBalanceService {
         let parts = rule.split(separator: "/")
         guard parts.count == 2 else { return nil }
         return Decimal(string: String(parts[1]).trimmingCharacters(in: .whitespacesAndNewlines))
+    }
+
+    func extractCustomPath(from rule: String) -> String? {
+        let trimmed = rule.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        if let slashIdx = trimmed.firstIndex(of: "/") {
+            let left = String(trimmed[..<slashIdx]).trimmingCharacters(in: .whitespacesAndNewlines)
+            return left.isEmpty ? nil : left
+        }
+        return trimmed
     }
 
     private func evaluateExpression(_ expr: String, in json: Any) -> Decimal? {
