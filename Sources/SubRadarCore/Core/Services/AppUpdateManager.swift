@@ -8,7 +8,7 @@ import Observation
 public final class AppUpdateManager {
     public static let defaultCheckIntervalSeconds: TimeInterval = 900
 
-    public private(set) var state: AppUpdateState = .idle
+    public internal(set) var state: AppUpdateState = .idle
     public private(set) var availableRelease: AppUpdateRelease?
     public private(set) var lastCheckedAt: Date?
     public var showUpdatePrompt: Bool = false
@@ -25,6 +25,7 @@ public final class AppUpdateManager {
 
     private var periodicTask: Task<Void, Never>?
     private var isBusy: Bool = false
+    private var isRelaunching: Bool = false
 
     public init(
         settings: AppSettingsStore,
@@ -186,7 +187,8 @@ public final class AppUpdateManager {
     }
 
     public func restartAndInstallReadyUpdate() {
-        guard case .readyToRestart(let staged) = state else { return }
+        guard case .readyToRestart(let staged) = state, !isRelaunching else { return }
+        isRelaunching = true
         do {
             try applyHandler(staged)
             let version = staged.release.version
@@ -195,6 +197,7 @@ public final class AppUpdateManager {
             showUpdatePrompt = false
             terminateHandler()
         } catch {
+            isRelaunching = false
             let msg = error.localizedDescription
             let logRef = logger
             Task { await logRef.log(.error, category: .update, "触发重启安装失败 error=\(msg)") }

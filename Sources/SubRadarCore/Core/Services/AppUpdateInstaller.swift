@@ -155,33 +155,13 @@ public enum AppUpdateInstaller {
         let pid = ProcessInfo.processInfo.processIdentifier
         let parentWritable = FileManager.default.isWritableFile(atPath: targetAppURL.deletingLastPathComponent().path)
         let helperScript = stagingDir.appendingPathComponent("replace_and_relaunch.sh")
-
-        let replaceCommand: String
-        if parentWritable {
-            replaceCommand = """
-                rm -rf "\(targetAppURL.path)"
-                mv "\(stagedAppURL.path)" "\(targetAppURL.path)"
-                """
-        } else {
-            let shellSnippet = "rm -rf '\(targetAppURL.path)' && mv '\(stagedAppURL.path)' '\(targetAppURL.path)'"
-            let escaped = shellSnippet.replacingOccurrences(of: "\\", with: "\\\\").replacingOccurrences(
-                of: "\"", with: "\\\"")
-            replaceCommand = """
-                /usr/bin/osascript -e "do shell script \\"\(escaped)\\" with administrator privileges"
-                """
-        }
-
-        let script = """
-            #!/usr/bin/env bash
-            set -e
-            while kill -0 \(pid) 2>/dev/null; do
-                sleep 0.2
-            done
-            \(replaceCommand)
-            /usr/bin/xattr -cr "\(targetAppURL.path)" || true
-            /usr/bin/open -n "\(targetAppURL.path)"
-            rm -rf "\(stagingDir.path)" || true
-            """
+        let script = makeReplaceScript(
+            pid: pid,
+            stagedAppPath: stagedAppURL.path,
+            targetAppPath: targetAppURL.path,
+            stagingDirPath: stagingDir.path,
+            privileged: !parentWritable
+        )
 
         try script.write(to: helperScript, atomically: true, encoding: .utf8)
         try FileManager.default.setAttributes([.posixPermissions: 0o755], ofItemAtPath: helperScript.path)
@@ -193,6 +173,48 @@ public enum AppUpdateInstaller {
         process.standardOutput = FileHandle.nullDevice
         process.standardError = FileHandle.nullDevice
         try process.run()
+    }
+
+    /// 生成替换脚本：先校验暂存包存在，再「旧版改名 .old → 移入新版 → 失败回滚」，绝不先删除旧版
+    static func makeReplaceScript(
+        pid: Int32,
+        stagedAppPath: String,
+        targetAppPath: String,
+        stagingDirPath: String,
+        privileged: Bool
+    ) -> String {
+        let oldPath = "\(targetAppPath).old"
+        let swapCommand =
+            privileged
+            ? "/usr/bin/osascript -e \"do shell script \\\"/bin/bash '$0' --swap\\\" with administrator privileges\""
+            : "swap_in"
+        return """
+            #!/usr/bin/env bash
+            set -e
+            swap_in() {
+                [ -d "\(stagedAppPath)" ] || exit 1
+                rm -rf "\(oldPath)"
+                mv "\(targetAppPath)" "\(oldPath)"
+                if mv "\(stagedAppPath)" "\(targetAppPath)"; then
+                    rm -rf "\(oldPath)"
+                else
+                    mv "\(oldPath)" "\(targetAppPath)"
+                    exit 1
+                fi
+            }
+            if [ "${1:-}" = "--swap" ]; then
+                swap_in
+                exit 0
+            fi
+            while kill -0 \(pid) 2>/dev/null; do
+                sleep 0.2
+            done
+            [ -d "\(stagedAppPath)" ] || exit 1
+            \(swapCommand)
+            /usr/bin/xattr -cr "\(targetAppPath)" || true
+            /usr/bin/open -n "\(targetAppPath)"
+            rm -rf "\(stagingDirPath)" || true
+            """
     }
 
     private static func runProcess(
