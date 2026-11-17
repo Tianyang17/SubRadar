@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83BCD88EB7EC15C9352425DC /* SubRadarCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6381A03A8ABCD52153271614 /* SubRadarCore */; };
+		128B11DA54543D211BF03A6E /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 75DD96FEC624ADE435971607 /* AppIcon.icns */; };
+		7183438A3C0092117AC15F6B /* RadarButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E74F402C8FFAA2F70C6B247 /* RadarButtons.swift */; };
+		1EB46E702C95BFB3343EA2CB /* RadarContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499D1F884A5FA0F84BF962B /* RadarContextMenu.swift */; };
+		FA9127619C7E6623FCC9C772 /* RadarDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4342F1DF6DF9656E7818875 /* RadarDatePicker.swift */; };
+		EA3106AC0AC6834631031F7B /* RadarFloatingMenuPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3698BD7A264C4ADD4C2547EF /* RadarFloatingMenuPresenter.swift */; };
+		5F28643D67422C03E09216D3 /* RadarLayoutPrimitives.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AAD1FA1D8E709E6948DFC8 /* RadarLayoutPrimitives.swift */; };
+		5915A4BE8BDF1DC1E7E889C3 /* RadarSecureInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76E8E01751B42BB73AA3026 /* RadarSecureInputView.swift */; };
+		7C2B699092E11B4795C021EF /* RadarSelectMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9386FF4318E0669B8511987 /* RadarSelectMenu.swift */; };
+		B1350581BD876439DFE6EE94 /* RadarSelectionToggles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13A816C4BA5017E78ACAF3 /* RadarSelectionToggles.swift */; };
+		4D0AEE1A5A3CCF4FB32F82EA /* RadarSymbolAndConfirmControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2E7266E58FE777591EA224 /* RadarSymbolAndConfirmControls.swift */; };
+		A4E5520C553F702B97218E58 /* RadarTextInputs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00831F05E8CDBD45F2E93BFD /* RadarTextInputs.swift */; };
+		099EF0CDCCEB33FB8F52D1FA /* SoftwarePresetIconRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7EFF4632438B77DFEB08 /* SoftwarePresetIconRenderer.swift */; };
+		68AC91F26F179E015DFAAD58 /* SubRadarAppIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7BB2C613EDF95372C1ED9D7 /* SubRadarAppIcon.swift */; };
+		3C63C2A13B99D12A0D4942CE /* SubRadarComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2B6896A4D4ABE11A9A42F /* SubRadarComponents.swift */; };
+		975501D8A88E2EE8ADD9596A /* SubRadarMenuBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BDB471C8DC41B14F376F71 /* SubRadarMenuBarIcon.swift */; };
+		A59A91FDAC786021AB158D4A /* SubRadarPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D16A095F92A1A53D284E14 /* SubRadarPalette.swift */; };
+		69AE9D5E9BDD418988563C6D /* SubRadarTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68AFBE6C67A88BA2E0F79FE5 /* SubRadarTheme.swift */; };
+		0B39A7EA372D802F8E5778FD /* SubRadarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825228ED7FA669FE08AE184 /* SubRadarApp.swift */; };
+		59DA45D642B76E4BC9160F52 /* AnalyticsCategoryBreakdownSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1259CB020E61BD22581A96 /* AnalyticsCategoryBreakdownSection.swift */; };
+		BA3E6C0DC559DE8BAE710EE3 /* AnalyticsDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00FC72DAE11D96A14F49A54 /* AnalyticsDashboardView.swift */; };
+		88A7A73CAA1A8CEE8633AE88 /* AnalyticsExpiryRadarSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F989A17827B89E9EB33756AC /* AnalyticsExpiryRadarSection.swift */; };
+		B98417782F9EDA48036B1B34 /* AnalyticsKPISection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D8F508ED81062BA6BB973B /* AnalyticsKPISection.swift */; };
+		2502AD34CF836A277FCA1CA1 /* AnalyticsLedgerBreakdownSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825D7E42674EC40E638FA38E /* AnalyticsLedgerBreakdownSection.swift */; };
+		93B1A1D1C18994E40D102D10 /* AnalyticsMonthlyTrendSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1061A32AEED8180469B0B9E /* AnalyticsMonthlyTrendSection.swift */; };
+		DB2DFB15A4B057F232A99FD9 /* AnalyticsUpcomingRenewalsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF878909B0568037EAE2D98D /* AnalyticsUpcomingRenewalsCard.swift */; };
+		DCEAA756F4FB8AD19E057582 /* SubscriptionDetailBillingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF57EAEC15AE696BEAC844F4 /* SubscriptionDetailBillingSection.swift */; };
+		094CE798E9D8B84265954B48 /* SubscriptionDetailFieldsAndLedger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C520900AB797DBAA1E7D3 /* SubscriptionDetailFieldsAndLedger.swift */; };
+		AF43667C91079E3292105422 /* SubscriptionDetailHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D11EE9EE85AB97F04FC811 /* SubscriptionDetailHeaderSection.swift */; };
+		F21DF57C5EEFD75528CAA169 /* SubscriptionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F991B0E3B5BB015D842B94 /* SubscriptionDetailView.swift */; };
+		A4FBEC94DCE387922B805D67 /* SubscriptionEditorAPIBillingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2F172210A37BC7AD8D87A2 /* SubscriptionEditorAPIBillingSection.swift */; };
+		4FFAC2B4761F43A2FA72073C /* SubscriptionEditorBillingScheduleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDEE4F3007845C25F188357 /* SubscriptionEditorBillingScheduleSection.swift */; };
+		1D8AFCA950DE3E7BFB7F231A /* SubscriptionEditorBillingSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A663E2F5BB438223D0A32B17 /* SubscriptionEditorBillingSection.swift */; };
+		077E49A8A320E49E052BFA22 /* SubscriptionEditorExternalImportSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57A13E7262A3CC8F7F7DC5D /* SubscriptionEditorExternalImportSection.swift */; };
+		314570CE49DD17413EEBA195 /* SubscriptionEditorFieldComposers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2343F0C3C796079B42BCDC7 /* SubscriptionEditorFieldComposers.swift */; };
+		93640FACF0ED4645229BDAAD /* SubscriptionEditorFieldsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8A474353C9711563A63289 /* SubscriptionEditorFieldsSection.swift */; };
+		04A6ECC5170E4172EA409B14 /* SubscriptionEditorIdentitySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5E84211A3F133E103A4FC7 /* SubscriptionEditorIdentitySection.swift */; };
+		1495CB076FAA857054E5A767 /* SubscriptionEditorInfraComposers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EAEBFA6F8093352912CE46 /* SubscriptionEditorInfraComposers.swift */; };
+		336D993342DBF0F187D96FAF /* SubscriptionEditorPresetPickerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0902FCE088BC7C96AF438ABB /* SubscriptionEditorPresetPickerSection.swift */; };
+		9042089C2C1B3FE706D7E906 /* SubscriptionEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9842BB113358C821373FEF9 /* SubscriptionEditorSheet.swift */; };
+		995BA9B4FBC3E67F9018D3C6 /* SubscriptionEditorSmartImportActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C809B5C000058CEC4359C78 /* SubscriptionEditorSmartImportActions.swift */; };
+		4E653036E2F4CB43957D347D /* SubscriptionEditorSmartImportSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FEA726C243BFFB32D70485 /* SubscriptionEditorSmartImportSection.swift */; };
+		3C9B69AF8C6F1298327ECC2D /* SubscriptionEditorSmartRuleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74A5C665C85931C7BC7EDBB /* SubscriptionEditorSmartRuleGuide.swift */; };
+		CA6BCB9DD9178A4D6C91BCBD /* SubscriptionEditorSmartRuleTooltip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10006FA926E2DBBD02AE54C0 /* SubscriptionEditorSmartRuleTooltip.swift */; };
+		ABD83BE734FE9EE464480D38 /* SubscriptionEditorSpecComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE3488C8F9C94E92183095C /* SubscriptionEditorSpecComposer.swift */; };
+		50C482A87832B76023DCD421 /* MailInboxScanKeywordBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EF83BF25F20565AB1B27B1 /* MailInboxScanKeywordBar.swift */; };
+		A1B2C3D4E5F60718293A4B5C /* MailScanChannelBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E5D4C3B2A1908172635443 /* MailScanChannelBanner.swift */; };
+		62496655EC145A0DD30ECA2B /* MailInboxScanResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5B4213EB2B1B70448838D /* MailInboxScanResults.swift */; };
+		342AFC096248AB8B6647AAC6 /* MailInboxScanSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB01051CDC570109EA9D9F2B /* MailInboxScanSheet.swift */; };
+		F3AEE0896FEB85E0FEDBA0DD /* SubscriptionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6960F5FDF8A31824B9510E21 /* SubscriptionListView.swift */; };
+		23AF7087FBDF3F78E8ACDA4F /* MainSplitDestinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD86C13CB2297F2C1A9DFA42 /* MainSplitDestinations.swift */; };
+		BE8FB403E8211A01602068BE /* MainSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1ED69A1DD94DE44A01F624 /* MainSplitView.swift */; };
+		C3277517967D3C767423023B /* MenuBarExtraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F27E87A1393CC1CF062E2F /* MenuBarExtraView.swift */; };
+		852BE09396E708A1228B18B2 /* SettingsBackupSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5C12273235E194CF094DD4 /* SettingsBackupSection.swift */; };
+		7B55A8D8AAE8C045F68D86A1 /* SettingsLLMConfigActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630B06805BCA37475D3AD5C1 /* SettingsLLMConfigActions.swift */; };
+		141A861B17DA9BD21477EED6 /* SettingsLLMSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4C479AA242996E7A251474 /* SettingsLLMSection.swift */; };
+		38C1A69E6F0CE9F6A548E9B3 /* SettingsRuntimeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DDFF93D7D062557B48E732 /* SettingsRuntimeSection.swift */; };
+		43683563005E7B9760AE8712 /* SettingsUpdateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2B644431FA2A03AEF3FF8D /* SettingsUpdateSection.swift */; };
+		FD3BF5F32BA8E1C98D326BB7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A888B357C9360E17725B2891 /* SettingsView.swift */; };
+		4062C46B304AE103AA70CD71 /* CategoryEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074EBCB28FFFFC9048126F27 /* CategoryEditorSheet.swift */; };
+		EB300BB64E486265AAC32A25 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE38789CC9A1255FAAF02C /* SidebarView.swift */; };
+		2B6D6F05E30B9AF09493E429 /* TemplateManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3C5822E934EFB14C166A4D /* TemplateManagerView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE693F048825ED0346A6522D /* SubRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF50AD77D40D87626FB65B61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		75DD96FEC624ADE435971607 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		4E74F402C8FFAA2F70C6B247 /* RadarButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarButtons.swift; sourceTree = "<group>"; };
+		F499D1F884A5FA0F84BF962B /* RadarContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarContextMenu.swift; sourceTree = "<group>"; };
+		F4342F1DF6DF9656E7818875 /* RadarDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarDatePicker.swift; sourceTree = "<group>"; };
+		3698BD7A264C4ADD4C2547EF /* RadarFloatingMenuPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarFloatingMenuPresenter.swift; sourceTree = "<group>"; };
+		A6AAD1FA1D8E709E6948DFC8 /* RadarLayoutPrimitives.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarLayoutPrimitives.swift; sourceTree = "<group>"; };
+		D76E8E01751B42BB73AA3026 /* RadarSecureInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSecureInputView.swift; sourceTree = "<group>"; };
+		D9386FF4318E0669B8511987 /* RadarSelectMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSelectMenu.swift; sourceTree = "<group>"; };
+		9C13A816C4BA5017E78ACAF3 /* RadarSelectionToggles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSelectionToggles.swift; sourceTree = "<group>"; };
+		0B2E7266E58FE777591EA224 /* RadarSymbolAndConfirmControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarSymbolAndConfirmControls.swift; sourceTree = "<group>"; };
+		00831F05E8CDBD45F2E93BFD /* RadarTextInputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarTextInputs.swift; sourceTree = "<group>"; };
+		3A6B7EFF4632438B77DFEB08 /* SoftwarePresetIconRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftwarePresetIconRenderer.swift; sourceTree = "<group>"; };
+		D7BB2C613EDF95372C1ED9D7 /* SubRadarAppIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRadarAppIcon.swift; sourceTree = "<group>"; };
+		53B2B6896A4D4ABE11A9A42F /* SubRadarComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRadarComponents.swift; sourceTree = "<group>"; };
+		B6BDB471C8DC41B14F376F71 /* SubRadarMenuBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRadarMenuBarIcon.swift; sourceTree = "<group>"; };
+		F6D16A095F92A1A53D284E14 /* SubRadarPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRadarPalette.swift; sourceTree = "<group>"; };
+		68AFBE6C67A88BA2E0F79FE5 /* SubRadarTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRadarTheme.swift; sourceTree = "<group>"; };
+		3825228ED7FA669FE08AE184 /* SubRadarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubRadarApp.swift; sourceTree = "<group>"; };
+		5D1259CB020E61BD22581A96 /* AnalyticsCategoryBreakdownSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCategoryBreakdownSection.swift; sourceTree = "<group>"; };
+		C00FC72DAE11D96A14F49A54 /* AnalyticsDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsDashboardView.swift; sourceTree = "<group>"; };
+		F989A17827B89E9EB33756AC /* AnalyticsExpiryRadarSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsExpiryRadarSection.swift; sourceTree = "<group>"; };
+		05D8F508ED81062BA6BB973B /* AnalyticsKPISection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsKPISection.swift; sourceTree = "<group>"; };
+		825D7E42674EC40E638FA38E /* AnalyticsLedgerBreakdownSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsLedgerBreakdownSection.swift; sourceTree = "<group>"; };
+		F1061A32AEED8180469B0B9E /* AnalyticsMonthlyTrendSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsMonthlyTrendSection.swift; sourceTree = "<group>"; };
+		EF878909B0568037EAE2D98D /* AnalyticsUpcomingRenewalsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsUpcomingRenewalsCard.swift; sourceTree = "<group>"; };
+		DF57EAEC15AE696BEAC844F4 /* SubscriptionDetailBillingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailBillingSection.swift; sourceTree = "<group>"; };
+		844C520900AB797DBAA1E7D3 /* SubscriptionDetailFieldsAndLedger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailFieldsAndLedger.swift; sourceTree = "<group>"; };
+		69D11EE9EE85AB97F04FC811 /* SubscriptionDetailHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailHeaderSection.swift; sourceTree = "<group>"; };
+		E3F991B0E3B5BB015D842B94 /* SubscriptionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailView.swift; sourceTree = "<group>"; };
+		DF2F172210A37BC7AD8D87A2 /* SubscriptionEditorAPIBillingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorAPIBillingSection.swift; sourceTree = "<group>"; };
+		4DDEE4F3007845C25F188357 /* SubscriptionEditorBillingScheduleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorBillingScheduleSection.swift; sourceTree = "<group>"; };
+		A663E2F5BB438223D0A32B17 /* SubscriptionEditorBillingSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorBillingSection.swift; sourceTree = "<group>"; };
+		E57A13E7262A3CC8F7F7DC5D /* SubscriptionEditorExternalImportSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorExternalImportSection.swift; sourceTree = "<group>"; };
+		D2343F0C3C796079B42BCDC7 /* SubscriptionEditorFieldComposers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorFieldComposers.swift; sourceTree = "<group>"; };
+		4E8A474353C9711563A63289 /* SubscriptionEditorFieldsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorFieldsSection.swift; sourceTree = "<group>"; };
+		6B5E84211A3F133E103A4FC7 /* SubscriptionEditorIdentitySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorIdentitySection.swift; sourceTree = "<group>"; };
+		D5EAEBFA6F8093352912CE46 /* SubscriptionEditorInfraComposers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorInfraComposers.swift; sourceTree = "<group>"; };
+		0902FCE088BC7C96AF438ABB /* SubscriptionEditorPresetPickerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorPresetPickerSection.swift; sourceTree = "<group>"; };
+		D9842BB113358C821373FEF9 /* SubscriptionEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorSheet.swift; sourceTree = "<group>"; };
+		2C809B5C000058CEC4359C78 /* SubscriptionEditorSmartImportActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorSmartImportActions.swift; sourceTree = "<group>"; };
+		99FEA726C243BFFB32D70485 /* SubscriptionEditorSmartImportSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorSmartImportSection.swift; sourceTree = "<group>"; };
+		B74A5C665C85931C7BC7EDBB /* SubscriptionEditorSmartRuleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorSmartRuleGuide.swift; sourceTree = "<group>"; };
+		10006FA926E2DBBD02AE54C0 /* SubscriptionEditorSmartRuleTooltip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorSmartRuleTooltip.swift; sourceTree = "<group>"; };
+		4DE3488C8F9C94E92183095C /* SubscriptionEditorSpecComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionEditorSpecComposer.swift; sourceTree = "<group>"; };
+		F7EF83BF25F20565AB1B27B1 /* MailInboxScanKeywordBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailInboxScanKeywordBar.swift; sourceTree = "<group>"; };
+		F6E5D4C3B2A1908172635443 /* MailScanChannelBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailScanChannelBanner.swift; sourceTree = "<group>"; };
+		0EE5B4213EB2B1B70448838D /* MailInboxScanResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailInboxScanResults.swift; sourceTree = "<group>"; };
+		DB01051CDC570109EA9D9F2B /* MailInboxScanSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailInboxScanSheet.swift; sourceTree = "<group>"; };
+		6960F5FDF8A31824B9510E21 /* SubscriptionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionListView.swift; sourceTree = "<group>"; };
+		FD86C13CB2297F2C1A9DFA42 /* MainSplitDestinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitDestinations.swift; sourceTree = "<group>"; };
+		7B1ED69A1DD94DE44A01F624 /* MainSplitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitView.swift; sourceTree = "<group>"; };
+		F5F27E87A1393CC1CF062E2F /* MenuBarExtraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarExtraView.swift; sourceTree = "<group>"; };
+		7B5C12273235E194CF094DD4 /* SettingsBackupSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBackupSection.swift; sourceTree = "<group>"; };
+		630B06805BCA37475D3AD5C1 /* SettingsLLMConfigActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLLMConfigActions.swift; sourceTree = "<group>"; };
+		6A4C479AA242996E7A251474 /* SettingsLLMSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLLMSection.swift; sourceTree = "<group>"; };
+		F9DDFF93D7D062557B48E732 /* SettingsRuntimeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRuntimeSection.swift; sourceTree = "<group>"; };
+		EB2B644431FA2A03AEF3FF8D /* SettingsUpdateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUpdateSection.swift; sourceTree = "<group>"; };
+		A888B357C9360E17725B2891 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		074EBCB28FFFFC9048126F27 /* CategoryEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEditorSheet.swift; sourceTree = "<group>"; };
+		4AFE38789CC9A1255FAAF02C /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		DD3C5822E934EFB14C166A4D /* TemplateManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateManagerView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CA8003021206097066E984FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83BCD88EB7EC15C9352425DC /* SubRadarCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ADCF10F76EBF2A74473E9DC4 = {
+			isa = PBXGroup;
+			children = (
+				6316A234F4133EA7B5C6B5FE /* SubRadarApp */,
+				25DF3B998E0AF6568902B022 /* AppConfig */,
+				5151B46607EBC8890D8DFCC2 /* Products */,
+				2D17C89EB2C5B87E8B0EC3B6 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		25DF3B998E0AF6568902B022 /* AppConfig */ = {
+			isa = PBXGroup;
+			children = (
+				AF50AD77D40D87626FB65B61 /* Info.plist */,
+				75DD96FEC624ADE435971607 /* AppIcon.icns */,
+			);
+			path = AppConfig;
+			sourceTree = "<group>";
+		};
+		5151B46607EBC8890D8DFCC2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE693F048825ED0346A6522D /* SubRadar.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2D17C89EB2C5B87E8B0EC3B6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6316A234F4133EA7B5C6B5FE /* SubRadarApp */ = {
+			isa = PBXGroup;
+			children = (
+				E5A66F87EB409F086CEFD3DC /* DesignSystem */,
+				01C16BF7F6A271C086750520 /* Views */,
+				3825228ED7FA669FE08AE184 /* SubRadarApp.swift */,
+			);
+			path = Sources/SubRadarApp;
+			sourceTree = "<group>";
+		};
+		E5A66F87EB409F086CEFD3DC /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				4E74F402C8FFAA2F70C6B247 /* RadarButtons.swift */,
+				F499D1F884A5FA0F84BF962B /* RadarContextMenu.swift */,
+				F4342F1DF6DF9656E7818875 /* RadarDatePicker.swift */,
+				3698BD7A264C4ADD4C2547EF /* RadarFloatingMenuPresenter.swift */,
+				A6AAD1FA1D8E709E6948DFC8 /* RadarLayoutPrimitives.swift */,
+				D76E8E01751B42BB73AA3026 /* RadarSecureInputView.swift */,
+				D9386FF4318E0669B8511987 /* RadarSelectMenu.swift */,
+				9C13A816C4BA5017E78ACAF3 /* RadarSelectionToggles.swift */,
+				0B2E7266E58FE777591EA224 /* RadarSymbolAndConfirmControls.swift */,
+				00831F05E8CDBD45F2E93BFD /* RadarTextInputs.swift */,
+				3A6B7EFF4632438B77DFEB08 /* SoftwarePresetIconRenderer.swift */,
+				D7BB2C613EDF95372C1ED9D7 /* SubRadarAppIcon.swift */,
+				53B2B6896A4D4ABE11A9A42F /* SubRadarComponents.swift */,
+				B6BDB471C8DC41B14F376F71 /* SubRadarMenuBarIcon.swift */,
+				F6D16A095F92A1A53D284E14 /* SubRadarPalette.swift */,
+				68AFBE6C67A88BA2E0F79FE5 /* SubRadarTheme.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		01C16BF7F6A271C086750520 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				44650DAA6B470A5F7A82D6C0 /* Analytics */,
+				0120AD0AEB8D8E3B59AC0126 /* Detail */,
+				E6752A417E987093B83691A6 /* Editor */,
+				21DDB3182134061042C3B691 /* List */,
+				1061A3708A782176115624EB /* MenuBar */,
+				056D8BBD51906AE8DC225DC6 /* Settings */,
+				D12A6BAC4CE5194D1008A93F /* Sidebar */,
+				59AAB82911B1559DFB398453 /* Templates */,
+				FD86C13CB2297F2C1A9DFA42 /* MainSplitDestinations.swift */,
+				7B1ED69A1DD94DE44A01F624 /* MainSplitView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		44650DAA6B470A5F7A82D6C0 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				5D1259CB020E61BD22581A96 /* AnalyticsCategoryBreakdownSection.swift */,
+				C00FC72DAE11D96A14F49A54 /* AnalyticsDashboardView.swift */,
+				F989A17827B89E9EB33756AC /* AnalyticsExpiryRadarSection.swift */,
+				05D8F508ED81062BA6BB973B /* AnalyticsKPISection.swift */,
+				825D7E42674EC40E638FA38E /* AnalyticsLedgerBreakdownSection.swift */,
+				F1061A32AEED8180469B0B9E /* AnalyticsMonthlyTrendSection.swift */,
+				EF878909B0568037EAE2D98D /* AnalyticsUpcomingRenewalsCard.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		0120AD0AEB8D8E3B59AC0126 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DF57EAEC15AE696BEAC844F4 /* SubscriptionDetailBillingSection.swift */,
+				844C520900AB797DBAA1E7D3 /* SubscriptionDetailFieldsAndLedger.swift */,
+				69D11EE9EE85AB97F04FC811 /* SubscriptionDetailHeaderSection.swift */,
+				E3F991B0E3B5BB015D842B94 /* SubscriptionDetailView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		E6752A417E987093B83691A6 /* Editor */ = {
+			isa = PBXGroup;
+			children = (
+				DF2F172210A37BC7AD8D87A2 /* SubscriptionEditorAPIBillingSection.swift */,
+				4DDEE4F3007845C25F188357 /* SubscriptionEditorBillingScheduleSection.swift */,
+				A663E2F5BB438223D0A32B17 /* SubscriptionEditorBillingSection.swift */,
+				E57A13E7262A3CC8F7F7DC5D /* SubscriptionEditorExternalImportSection.swift */,
+				D2343F0C3C796079B42BCDC7 /* SubscriptionEditorFieldComposers.swift */,
+				4E8A474353C9711563A63289 /* SubscriptionEditorFieldsSection.swift */,
+				6B5E84211A3F133E103A4FC7 /* SubscriptionEditorIdentitySection.swift */,
+				D5EAEBFA6F8093352912CE46 /* SubscriptionEditorInfraComposers.swift */,
+				0902FCE088BC7C96AF438ABB /* SubscriptionEditorPresetPickerSection.swift */,
+				D9842BB113358C821373FEF9 /* SubscriptionEditorSheet.swift */,
+				2C809B5C000058CEC4359C78 /* SubscriptionEditorSmartImportActions.swift */,
+				99FEA726C243BFFB32D70485 /* SubscriptionEditorSmartImportSection.swift */,
+				B74A5C665C85931C7BC7EDBB /* SubscriptionEditorSmartRuleGuide.swift */,
+				10006FA926E2DBBD02AE54C0 /* SubscriptionEditorSmartRuleTooltip.swift */,
+				4DE3488C8F9C94E92183095C /* SubscriptionEditorSpecComposer.swift */,
+			);
+			path = Editor;
+			sourceTree = "<group>";
+		};
+		21DDB3182134061042C3B691 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				F7EF83BF25F20565AB1B27B1 /* MailInboxScanKeywordBar.swift */,
+				F6E5D4C3B2A1908172635443 /* MailScanChannelBanner.swift */,
+				0EE5B4213EB2B1B70448838D /* MailInboxScanResults.swift */,
+				DB01051CDC570109EA9D9F2B /* MailInboxScanSheet.swift */,
+				6960F5FDF8A31824B9510E21 /* SubscriptionListView.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		1061A3708A782176115624EB /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				F5F27E87A1393CC1CF062E2F /* MenuBarExtraView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		056D8BBD51906AE8DC225DC6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7B5C12273235E194CF094DD4 /* SettingsBackupSection.swift */,
+				630B06805BCA37475D3AD5C1 /* SettingsLLMConfigActions.swift */,
+				6A4C479AA242996E7A251474 /* SettingsLLMSection.swift */,
+				F9DDFF93D7D062557B48E732 /* SettingsRuntimeSection.swift */,
+				EB2B644431FA2A03AEF3FF8D /* SettingsUpdateSection.swift */,
+				A888B357C9360E17725B2891 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D12A6BAC4CE5194D1008A93F /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				074EBCB28FFFFC9048126F27 /* CategoryEditorSheet.swift */,
+				4AFE38789CC9A1255FAAF02C /* SidebarView.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
+		59AAB82911B1559DFB398453 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				DD3C5822E934EFB14C166A4D /* TemplateManagerView.swift */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		28D25BC1DFE727CF9096A9A9 /* SubRadar */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ADE71700E9404B10E13B577 /* Build configuration list for PBXNativeTarget "SubRadar" */;
+			buildPhases = (
+				28BE49E1E42D704C38EEA420 /* Sources */,
+				CA8003021206097066E984FF /* Frameworks */,
+				E26E44B743A848DED8844ED9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SubRadar;
+			packageProductDependencies = (
+				6381A03A8ABCD52153271614 /* SubRadarCore */,
+			);
+			productName = SubRadar;
+			productReference = DE693F048825ED0346A6522D /* SubRadar.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		98F54143AB4E86B28C3AFEE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					28D25BC1DFE727CF9096A9A9 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 12D04D787E90C9B967248BFD /* Build configuration list for PBXProject "SubRadar" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = ADCF10F76EBF2A74473E9DC4;
+			packageReferences = (
+				95A47ADAD9A292B94B93EAEA /* XCLocalSwiftPackageReference "." */,
+			);
+			productRefGroup = 5151B46607EBC8890D8DFCC2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				28D25BC1DFE727CF9096A9A9 /* SubRadar */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E26E44B743A848DED8844ED9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				128B11DA54543D211BF03A6E /* AppIcon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		28BE49E1E42D704C38EEA420 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7183438A3C0092117AC15F6B /* RadarButtons.swift in Sources */,
+				1EB46E702C95BFB3343EA2CB /* RadarContextMenu.swift in Sources */,
+				FA9127619C7E6623FCC9C772 /* RadarDatePicker.swift in Sources */,
+				EA3106AC0AC6834631031F7B /* RadarFloatingMenuPresenter.swift in Sources */,
+				5F28643D67422C03E09216D3 /* RadarLayoutPrimitives.swift in Sources */,
+				5915A4BE8BDF1DC1E7E889C3 /* RadarSecureInputView.swift in Sources */,
+				7C2B699092E11B4795C021EF /* RadarSelectMenu.swift in Sources */,
+				B1350581BD876439DFE6EE94 /* RadarSelectionToggles.swift in Sources */,
+				4D0AEE1A5A3CCF4FB32F82EA /* RadarSymbolAndConfirmControls.swift in Sources */,
+				A4E5520C553F702B97218E58 /* RadarTextInputs.swift in Sources */,
+				099EF0CDCCEB33FB8F52D1FA /* SoftwarePresetIconRenderer.swift in Sources */,
+				68AC91F26F179E015DFAAD58 /* SubRadarAppIcon.swift in Sources */,
+				3C63C2A13B99D12A0D4942CE /* SubRadarComponents.swift in Sources */,
+				975501D8A88E2EE8ADD9596A /* SubRadarMenuBarIcon.swift in Sources */,
+				A59A91FDAC786021AB158D4A /* SubRadarPalette.swift in Sources */,
+				69AE9D5E9BDD418988563C6D /* SubRadarTheme.swift in Sources */,
+				0B39A7EA372D802F8E5778FD /* SubRadarApp.swift in Sources */,
+				59DA45D642B76E4BC9160F52 /* AnalyticsCategoryBreakdownSection.swift in Sources */,
+				BA3E6C0DC559DE8BAE710EE3 /* AnalyticsDashboardView.swift in Sources */,
+				88A7A73CAA1A8CEE8633AE88 /* AnalyticsExpiryRadarSection.swift in Sources */,
+				B98417782F9EDA48036B1B34 /* AnalyticsKPISection.swift in Sources */,
+				2502AD34CF836A277FCA1CA1 /* AnalyticsLedgerBreakdownSection.swift in Sources */,
+				93B1A1D1C18994E40D102D10 /* AnalyticsMonthlyTrendSection.swift in Sources */,
+				DB2DFB15A4B057F232A99FD9 /* AnalyticsUpcomingRenewalsCard.swift in Sources */,
+				DCEAA756F4FB8AD19E057582 /* SubscriptionDetailBillingSection.swift in Sources */,
+				094CE798E9D8B84265954B48 /* SubscriptionDetailFieldsAndLedger.swift in Sources */,
+				AF43667C91079E3292105422 /* SubscriptionDetailHeaderSection.swift in Sources */,
+				F21DF57C5EEFD75528CAA169 /* SubscriptionDetailView.swift in Sources */,
+				A4FBEC94DCE387922B805D67 /* SubscriptionEditorAPIBillingSection.swift in Sources */,
+				4FFAC2B4761F43A2FA72073C /* SubscriptionEditorBillingScheduleSection.swift in Sources */,
+				1D8AFCA950DE3E7BFB7F231A /* SubscriptionEditorBillingSection.swift in Sources */,
+				077E49A8A320E49E052BFA22 /* SubscriptionEditorExternalImportSection.swift in Sources */,
+				314570CE49DD17413EEBA195 /* SubscriptionEditorFieldComposers.swift in Sources */,
+				93640FACF0ED4645229BDAAD /* SubscriptionEditorFieldsSection.swift in Sources */,
+				04A6ECC5170E4172EA409B14 /* SubscriptionEditorIdentitySection.swift in Sources */,
+				1495CB076FAA857054E5A767 /* SubscriptionEditorInfraComposers.swift in Sources */,
+				336D993342DBF0F187D96FAF /* SubscriptionEditorPresetPickerSection.swift in Sources */,
+				9042089C2C1B3FE706D7E906 /* SubscriptionEditorSheet.swift in Sources */,
+				995BA9B4FBC3E67F9018D3C6 /* SubscriptionEditorSmartImportActions.swift in Sources */,
+				4E653036E2F4CB43957D347D /* SubscriptionEditorSmartImportSection.swift in Sources */,
+				3C9B69AF8C6F1298327ECC2D /* SubscriptionEditorSmartRuleGuide.swift in Sources */,
+				CA6BCB9DD9178A4D6C91BCBD /* SubscriptionEditorSmartRuleTooltip.swift in Sources */,
+				ABD83BE734FE9EE464480D38 /* SubscriptionEditorSpecComposer.swift in Sources */,
+				50C482A87832B76023DCD421 /* MailInboxScanKeywordBar.swift in Sources */,
+				A1B2C3D4E5F60718293A4B5C /* MailScanChannelBanner.swift in Sources */,
+				62496655EC145A0DD30ECA2B /* MailInboxScanResults.swift in Sources */,
+				342AFC096248AB8B6647AAC6 /* MailInboxScanSheet.swift in Sources */,
+				F3AEE0896FEB85E0FEDBA0DD /* SubscriptionListView.swift in Sources */,
+				23AF7087FBDF3F78E8ACDA4F /* MainSplitDestinations.swift in Sources */,
+				BE8FB403E8211A01602068BE /* MainSplitView.swift in Sources */,
+				C3277517967D3C767423023B /* MenuBarExtraView.swift in Sources */,
+				852BE09396E708A1228B18B2 /* SettingsBackupSection.swift in Sources */,
+				7B55A8D8AAE8C045F68D86A1 /* SettingsLLMConfigActions.swift in Sources */,
+				141A861B17DA9BD21477EED6 /* SettingsLLMSection.swift in Sources */,
+				38C1A69E6F0CE9F6A548E9B3 /* SettingsRuntimeSection.swift in Sources */,
+				43683563005E7B9760AE8712 /* SettingsUpdateSection.swift in Sources */,
+				FD3BF5F32BA8E1C98D326BB7 /* SettingsView.swift in Sources */,
+				4062C46B304AE103AA70CD71 /* CategoryEditorSheet.swift in Sources */,
+				EB300BB64E486265AAC32A25 /* SidebarView.swift in Sources */,
+				2B6D6F05E30B9AF09493E429 /* TemplateManagerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		877A6BA951A2EA0025A2ABE8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		959134B361DD7E21ADEA3164 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		1E0DDAF384B911BF23BC77ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AppConfig/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subradar.desktop;
+				PRODUCT_NAME = SubRadar;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A1EFC270D4D6011185E1BD4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AppConfig/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subradar.desktop;
+				PRODUCT_NAME = SubRadar;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		12D04D787E90C9B967248BFD /* Build configuration list for PBXProject "SubRadar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				877A6BA951A2EA0025A2ABE8 /* Debug */,
+				959134B361DD7E21ADEA3164 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ADE71700E9404B10E13B577 /* Build configuration list for PBXNativeTarget "SubRadar" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E0DDAF384B911BF23BC77ED /* Debug */,
+				A1EFC270D4D6011185E1BD4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		95A47ADAD9A292B94B93EAEA /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6381A03A8ABCD52153271614 /* SubRadarCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SubRadarCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 98F54143AB4E86B28C3AFEE0 /* Project object */;
+}
